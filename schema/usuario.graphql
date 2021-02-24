@@ -4,6 +4,12 @@
         nome: String
     }
 
+    enum usuariosStatus{
+        ATIVO
+        INATIVO
+        DESATIVADO
+    }
+
     type Usuario{
         id : ID!
         nome : String!
@@ -13,6 +19,7 @@
         saldo: Float
         salario: Float
         perfil: Perfil
+        status: usuariosStatus
     }
     
         
