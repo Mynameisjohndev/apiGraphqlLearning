@@ -44,17 +44,26 @@ module.exports = {
             excluidos[0] : null
     },
 
-    editarUsuario(_, args) {
-        const i = usuarios
-            .findIndex(u => u.id === args.id)
+    editarUsuario(_, { filtro, dados }) {
+        const i = indiceUsuario(filtro);
         if (i < 0) return null
 
-        const usuario = {
-            ...usuarios[i],
-            ...args,
+        usuarios[i].nome = dados.nome;
+        usuarios[i].email = dados.email;
+        if (dados.idade) {
+            usuarios[i].idade = dados.idade
         }
+        return usuarios[i];
 
-        usuarios.splice(i, 1, usuario);
-        return usuario;
+        // const i = usuarios
+        //     .findIndex(u => u.id === args.id)
+        // if (i < 0) return null
+
+        // const usuario = {
+        //     ...usuarios[i],
+        //     ...args,
+        // }
+
+        // usuarios.splice(i, 1, usuario);
     }
 }
