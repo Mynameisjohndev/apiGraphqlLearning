@@ -22,4 +22,9 @@
         status: usuariosStatus
     }
     
+    input UsuarioInput {
+        nome : String
+        email: String
+        idade: Int
+    }
         
