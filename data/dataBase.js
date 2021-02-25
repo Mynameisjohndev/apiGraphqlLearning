@@ -18,7 +18,7 @@ const usuarios = [{
         status: "ATIVO"
     },
     {
-        id: 2,
+        id: proximoID(),
         nome: "João",
         email: "juyo@gmail.com",
         idade: 61,
@@ -26,7 +26,7 @@ const usuarios = [{
         status: "INATIVO"
     },
     {
-        id: 3,
+        id: proximoID(),
         nome: "João Atônio",
         email: "jo@gmail.com",
         idade: 31,

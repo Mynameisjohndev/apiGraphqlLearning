@@ -1,5 +1,6 @@
 const { usuarios, proximoID } = require('../data/dataBase')
 
+
 module.exports = {
     novoUsuario(_, args) {
 
@@ -18,5 +19,15 @@ module.exports = {
         }
         usuarios.push(novo);
         return novo;
+    },
+
+    excluirUsuario(_, { id }) {
+        const i = usuarios
+            .findIndex(u => u.id === id)
+        if (i < 0) return null
+        const excluidos =
+            usuarios.splice(i, 1)
+        return excluidos ?
+            excluidos[0] : null
     }
 }
