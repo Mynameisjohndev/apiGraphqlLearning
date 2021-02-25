@@ -32,3 +32,12 @@
         id: Int
         email: String
     }
+
+    input PerfilInput{
+        nome: String
+    }
+
+    input PerfilFiltro{
+        id: Int
+        nome: String
+    }
