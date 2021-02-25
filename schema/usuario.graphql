@@ -28,3 +28,7 @@
         idade: Int
     }
         
+    input UsuarioFiltro{
+        id: Int
+        email: String
+    }
