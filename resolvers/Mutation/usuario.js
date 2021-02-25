@@ -1,4 +1,4 @@
-const { usuarios, proximoID } = require('../data/dataBase')
+const { usuarios, proximoID } = require('../../data/dataBase')
 
 
 function indiceUsuario(filtro) {
