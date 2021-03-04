@@ -10,5 +10,5 @@ const server = new ApolloServer({
 
 server.listen().then(({ url }) => {
     console.log(`Executando em ${url}`)
-    console.log(new Date.prototype.getDate());
+    //console.log(new Date.prototype.getDate());
 })
