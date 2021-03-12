@@ -1,5 +1,5 @@
 type Usuario {
-    _id: ID
+    id: Int
     nome: String!
     email: String!
     perfis: [Perfil]
@@ -13,12 +13,12 @@ input UsuarioInput {
 }
 
 input UsuarioFiltro {
-    id: ID
+    id: Int
     email: String
 }
 
 type Perfil {
-    _id: ID
+    id: Int
     nome: String!
     rotulo: String!
     usuarios: [Usuario]
@@ -30,6 +30,6 @@ input PerfilInput {
 }
 
 input PerfilFiltro {
-    _id: ID
+    id: Int
     nome: String
 }
