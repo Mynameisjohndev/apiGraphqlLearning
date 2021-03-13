@@ -7,9 +7,9 @@ type Usuario {
 }
 
 input UsuarioInput {
-    nome: String
-    email: String
-    senha: String
+    nome: String!
+    email: String!
+    senha: String!
     perfis: [PerfilFiltro]
 }
 
