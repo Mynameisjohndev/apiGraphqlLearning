@@ -1,5 +1,6 @@
 const db = require('../../config/db')
 const bcrypt = require('bcrypt-nodejs')
+const {  getUsuarioLogado } = require('../comum/usuario')
 module.exports = {
 
     async login(_,{ dados }){
