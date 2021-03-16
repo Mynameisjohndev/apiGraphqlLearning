@@ -1,53 +1,52 @@
 const jwt = require('jwt-simple')
 
-module.exports = async ({req}) => {
+module.exports = async ({ req }) => {
+    // Em desenvolvimento
+    // await require('./simularUsuarioLogado')(req)
 
-  //await require('./simularUsuarioLogado')(req)
+    const auth = req.headers.authorization
+    const token = auth && auth.substring(7)
 
-  const auth = req.headers.authorization
+    let usuario = null
+    let admin = null
 
-  const token = auth && auth.substring(7)
-  let usuario = null
-  let admin = null
-
-  if(token) {
-    try {
-        let conteudoToken = jwt.decode(token,
-            process.env.APP_AUTH_SECRET)
-        if(new Date(conteudoToken.exp * 1000) > new Date()) {
-            usuario = conteudoToken
+    if(token) {
+        try {
+            let conteudoToken = jwt.decode(token,
+                process.env.APP_AUTH_SECRET)
+            if(new Date(conteudoToken.exp * 1000) > new Date()) {
+                usuario = conteudoToken
+            }
+        } catch(e) {
+            // token inválido
         }
-    } catch(e) {
-        // token inválido
     }
-}
-if(usuario && usuario.perfis) {
-  admin = usuario.perfis.includes('admin')
-}
+    
+    if(usuario && usuario.perfis) {
+        admin = usuario.perfis.includes('admin')
+    }
 
-const err = new Error('Acesso negado!')
+    const err = new Error('Acesso negado!')
 
-return {
-  usuario,
-  admin,
-  validarUsuario() {
-      if(!usuario) throw err
-  },
-  validarAdmin() {
-      if(!admin) throw err
-  },
-  validarUsuarioFiltro(filtro) {
-      if(admin) return
+    return {
+        usuario,
+        admin,
+        validarUsuario() {
+            if(!usuario) throw err
+        },
+        validarAdmin() {
+            if(!admin) throw err
+        },
+        validarUsuarioFiltro(filtro) {
+            if(admin) return
 
-      if(!usuario) throw err
-      if(!filtro) throw err
+            if(!usuario) throw err
+            if(!filtro) throw err
 
-      const { id, email } = filtro
-      if(!id && !email) throw err
-      if(id && id !== usuario.id) throw err
-      if(email && email !== usuario.email) throw err
-  }
-}
-
-  //console.log(auth)
+            const { id, email } = filtro
+            if(!id && !email) throw err
+            if(id && id !== usuario.id) throw err
+            if(email && email !== usuario.email) throw err
+        }
+    }
 }
